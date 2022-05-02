@@ -2,20 +2,19 @@ package org.techtown.jamap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
-import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
@@ -28,6 +27,7 @@ public class MainActivity extends FragmentActivity
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
+    Button event;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,15 @@ public class MainActivity extends FragmentActivity
         }
 
         mapFragment.getMapAsync(this);
+
+        event = (Button) findViewById(R.id.event);
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, typeActivity.class));
+            }
+        });
+
     }
 
     @UiThread
@@ -123,4 +132,29 @@ public class MainActivity extends FragmentActivity
 //
 //    }
 
+
+
+
+
+//합치기 전 onCreate 부분
+//    Button event;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_maps);
+//
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+//
+//        event = (Button) findViewById(R.id.event);
+//        event.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MapsActivity.this, eventActivity.class));
+//            }
+//        });
+//
+//    }
 
